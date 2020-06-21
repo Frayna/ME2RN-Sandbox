@@ -1,0 +1,25 @@
+:root {
+    --card-width: 20rem;
+    --card-heigth: 30rem;
+    --card-radius: 1rem;
+}
+
+.Card {
+    background-color: rgba(255,255,255, 0.1);
+    border-radius: 0rem 0rem var(--card-radius) var(--card-radius);
+}
+
+.Card-Header {
+    width: var(--card-width);
+    height: calc(var(--card-heigth) / 3);
+    background: url("https://picsum.photos/200/300") center/cover no-repeat;
+    border-radius: var(--card-radius) var(--card-radius) 0rem 0rem;
+}
+
+.Card-Content {
+    height: calc((var(--card-heigth) / 3) * 1.5);
+
+}
+
+
+

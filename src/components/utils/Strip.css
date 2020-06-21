@@ -1,0 +1,20 @@
+.Strip {
+    color: #FFFFFF;
+    background: #000;
+    width: calc((var(--card-width) / 4) * 3.5);
+    margin-top: -0.5rem;
+    border-bottom-right-radius: 1rem;
+    margin-left: -1rem;
+    padding-inline: 2rem 0rem;
+    box-shadow: 4px 4px 6px rgb(0, 255, 0)
+}
+
+.Strip::before{
+    content: '';
+    display: block;
+    background: red;
+    position: relative;
+    left: 0;
+    width: 1rem;
+    height: 1rem;
+}
