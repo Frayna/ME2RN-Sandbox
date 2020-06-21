@@ -118,3 +118,31 @@
     display: flex;
     justify-content: center;
 }
+
+.Refresh {
+  background-color: green;
+  border-radius: 2px;
+  color: white;
+  display: inline-flex;
+}
+
+.Refresh-Waiting {
+  background-color: orange;
+}
+
+.Refresh-Waiting-SVG {
+  animation-duration: 1s;
+  animation-direction: normal;
+  animation-iteration-count:infinite;
+  animation-name: rotate;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}
