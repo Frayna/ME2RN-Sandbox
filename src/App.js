@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import fs from 'fs';
 
 import './App.css'
 import MultiForm from "./components/utils/Form";
 import TextField from "./components/utils/TextField";
 import SelectField from "./components/utils/SelectField";
 import BlogComponent from "./components/utils/BlogComponent";
-import { wait } from '@testing-library/react';
 
 function App() {
 
@@ -50,6 +50,7 @@ function App() {
 		console.debug("Refresh Button Clicked !");
 		setRefreshState({...RefreshState, state:"waiting"})
 		setTimeout(() => {setRefreshState({...RefreshState, state:"clear"})}, 1500)
+	//	console.debug(fs.readFileSync('someData.txt'))
 	}
 
 	return (
