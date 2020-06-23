@@ -48,8 +48,10 @@ function App() {
 
 	const refresh = () => {
 		console.debug("Refresh Button Clicked !");
-		setRefreshState({...RefreshState, state:"waiting"})
-		setTimeout(() => {setRefreshState({...RefreshState, state:"clear"})}, 1500)
+		if(RefreshState.state === "clear") {
+			setRefreshState({...RefreshState, state:"waiting"})
+			setTimeout(() => {setRefreshState({...RefreshState, state:"clear"})}, 1500)
+		}
 	//	console.debug(fs.readFileSync('someData.txt'))
 	}
 
