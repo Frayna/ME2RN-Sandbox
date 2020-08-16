@@ -34,13 +34,13 @@ function TableComponent({data, onChange, visibility}) {
 	//didmount
 	useEffect(() => {
 		const sortTable = {};
+		console.log("Title", titles);
 		titles.map(v => {
 			sortTable[v] = 0;
 		});
+		console.log("SortTable", sortTable);
 		setSortTableState(sortTable);
-		console.log(sortTable);
-
-	},[]);
+	},[data]);
 
 	useEffect(() => {
 		let index;
