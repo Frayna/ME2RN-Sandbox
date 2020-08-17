@@ -5,8 +5,10 @@ import CovidComponent from "./components/CovidComponent";
 
 function App() {
 	return <div className="App-content">
-		<CountDownComponent />
-		<CovidComponent />
+		<div className="App-Wrapper">
+			<CountDownComponent />
+			<CovidComponent />
+		</div>
 	</div>;
 }
 

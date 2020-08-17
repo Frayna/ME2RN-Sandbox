@@ -39,7 +39,7 @@ export default function CountDownComponent() {
 
 	return(
 		<div className="Counter">
-			{diff.day + "j " + diff.hour + " h "  + diff.min + " min "  + diff.sec + " s"}
+			{diff.day + "j " + diff.hour + "h "  + diff.min + "min "  + diff.sec + "s"}
 		</div>
 	)
 }
