@@ -102,13 +102,13 @@ export default function CovidComponent() {
 			</div>
 			<div className="Covid_container">
 				<div className="Covid_block">
+					<CovidMonitorComponent title="Reanimations" state={rea} />
+				</div>
+				<div className="Covid_block">
 					<CovidMonitorComponent
 						title="Hospitalisations"
 						state={hospit}
 					/>
-				</div>
-				<div className="Covid_block">
-					<CovidMonitorComponent title="Reanimations" state={rea} />
 				</div>
 			</div>
 		</div>
