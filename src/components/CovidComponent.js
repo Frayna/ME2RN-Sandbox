@@ -11,7 +11,6 @@ export default function CovidComponent() {
 	const array1 = [1, 2, 3, 4];
 	const [status, setStatus] = useState([]);
 	const [table, setTable] = useState([]);
-	const [clearData, setClearData] = useState([]);
 	const [hospit, setHospit] = useState({});
 	const [rea, setRea] = useState({});
 
@@ -45,7 +44,11 @@ export default function CovidComponent() {
 				Array.from(status, (e) => ({
 					Date: e.date,
 					Reanimations: e.reanimation,
+					Charge_Rea:
+						Math.floor((e.reanimation / litRea) * 10000) / 100,
 					Hospitalisations: e.hospitalises,
+					Charge_Hospit:
+						Math.floor((e.hospitalises / litHospit) * 10000) / 100,
 				}))
 			);
 			const clear = Array.from(status, (e) => ({
@@ -53,8 +56,7 @@ export default function CovidComponent() {
 				Reanimations: e.reanimation,
 				Hospitalisations: e.hospitalises,
 			}));
-			setClearData(clear);
-			const first4 = clear.slice(0, 4);
+			const first4 = clear.slice(clear.length - 8, clear.length - 4);
 			const first_4rea = Array.from(first4, (e) => e.Reanimations);
 			const first_4hospit = Array.from(first4, (e) => e.Hospitalisations);
 			const last4 = clear.slice(4);
@@ -78,40 +80,41 @@ export default function CovidComponent() {
 			// 68000 lit hospit en RP et 1200 lit rea
 			setHospit({
 				actual: clear[clear.length - 1].Hospitalisations,
-				max: 68000,
-				charge: clear[clear.length - 1].Hospitalisations / 68000,
-				tendency: hospit_tendency,
+				max: litHospit,
+				charge: clear[clear.length - 1].Hospitalisations / litHospit,
+				tendency: Math.trunc((hospit_tendency / 2) * 100) / 100,
 			});
 			setRea({
 				actual: clear[clear.length - 1].Reanimations,
-				max: 1200,
-				charge: clear[clear.length - 1].Reanimations / 1200,
-				tendency: rea_tendency,
+				max: litRea,
+				charge: clear[clear.length - 1].Reanimations / litRea,
+				tendency: Math.trunc((rea_tendency / 2) * 100) / 100,
 			});
 		}
 	}, [status]);
 
 	const reducer = (accumulator, currentValue) => accumulator + currentValue;
 	console.log("TEST", array1.reduce(reducer) / array1.length);
-	return (status.length ? 
-		<div className="Covid_container">
-			<div className="Covid_block">
+	return status.length ? (
+		<div className="Covid_container" style={{flexDirection:"column"}}>
+			<div>
 				<TableComponent data={table} onChange={(e) => setTable(e)} />
 			</div>
-			<div className="Covid_block">
-				<CovidMonitorComponent
-					title="Hospitalisations"
-					state={hospit}
-				/>
-			</div>
-			<div className="Covid_block">
-				<CovidMonitorComponent
-					title="Reanimations"
-					state={rea}
-				/>
+			<div className="Covid_container">
+				<div className="Covid_block">
+					<CovidMonitorComponent
+						title="Hospitalisations"
+						state={hospit}
+					/>
+				</div>
+				<div className="Covid_block">
+					<CovidMonitorComponent title="Reanimations" state={rea} />
+				</div>
 			</div>
 		</div>
-		:
-		<div></div>
+	) : (
+		<div className="Covid_container" style={{ color: "white" }}>
+			Waiting Covid API...
+		</div>
 	);
 }
